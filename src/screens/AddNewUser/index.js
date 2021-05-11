@@ -153,7 +153,7 @@ const AddNewUser = ({navigation}:props) => {
 
     return(
         <View style={{flex:1, backgroundColor:Common.Colors.White_Color}}>
-            <View style={{height:55, width:'100%', paddingHorizontal:5, alignItems: 'center', flexDirection:'row', backgroundColor:Common.Colors.Theme_Color}}>
+            <View style={{height:55, width:'100%', paddingHorizontal:5, alignItems: 'center', flexDirection:'row', backgroundColor:Common.Colors.White_Color, borderBottomWidth:2, borderBottomColor:'#7a7a7a'}}>
             <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={{height: 45, width: 40}}>
@@ -162,7 +162,7 @@ const AddNewUser = ({navigation}:props) => {
               height: '100%',
               widht: '100%',
               resizeMode: 'contain',
-              tintColor: '#ffffff',
+              tintColor: '#111111',
             }}
             source={Common.Images.Back_Gray_Image}
           />
@@ -171,7 +171,7 @@ const AddNewUser = ({navigation}:props) => {
           <Text
             allowFontScaling={false}
             numberOfLines={1}
-            style={{fontSize: 22, fontWeight: 'bold', color: '#ffffff'}}>
+            style={{fontSize: 22, fontWeight: 'bold', color: '#111111'}}>
             {'Add New User'}
           </Text>
         </View>

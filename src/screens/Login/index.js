@@ -5,13 +5,16 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  ImageBackground
 } from 'react-native';
 import Colors from '../../common/Colors';
+import Common from '../../common';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import CheckBox from 'react-native-check-box';
 
 const Login = ({navigation}) => {
   return (
+    <ImageBackground source={Common.Images.Background_Image} style={{flex:1}} imageStyle={{height:'100%', width:'100%', resizeMode:'stretch'}}>
     <View style={styles.container}>
       <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.headerContainer}>
@@ -25,13 +28,13 @@ const Login = ({navigation}) => {
           <Text style={styles.loginText}>Login</Text>
         </View>
         <View>
-          <Text>Username</Text>
+          <Text style={{color:'#ffffff'}}>Username</Text>
           <View>
             <TextInput style={styles.input} />
           </View>
         </View>
         <View style={{marginVertical: 20}}>
-          <Text>Password</Text>
+          <Text style={{color:'#ffffff'}}>Password</Text>
           <View>
             <TextInput style={styles.input} />
           </View>
@@ -46,8 +49,8 @@ const Login = ({navigation}) => {
             }}
             isChecked={true}
             rightText={'Remember Me'}
-            rightTextStyle={{color: Colors.Theme_Color}}
-            checkBoxColor={Colors.Theme_Color}
+            rightTextStyle={{color: Colors.White_Color}}
+            checkBoxColor={Colors.White_Color}
           />
           <TouchableOpacity>
             <Text style={styles.forgotText}>Forgot Password ?</Text>
@@ -60,11 +63,12 @@ const Login = ({navigation}) => {
             <Text style={{color: 'white'}}>LOGIN</Text>
           </TouchableOpacity>
           <TouchableOpacity>
-            <Text style={{color: Colors.Theme_Color}}>Create Account</Text>
+            <Text style={{color: Colors.White_Color}}>Create Account</Text>
           </TouchableOpacity>
         </View>
       </KeyboardAwareScrollView>
     </View>
+    </ImageBackground>
   );
 };
 
@@ -72,19 +76,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    // backgroundColor:'#42206C'
   },
   headerContainer: {},
   headerText1: {
     fontSize: 25,
     fontWeight: 'bold',
+    color:'#ffffff'
   },
   headerText2: {
     width: 150,
     fontSize: 18,
+    color:'#ffffff',
+    fontWeight: 'bold',
   },
   loginText: {
     textAlign: 'center',
-    color: Colors.Theme_Color,
+    color: Colors.White_Color,
     fontSize: 25,
     fontWeight: 'bold',
     marginVertical: 20,
@@ -107,7 +115,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   forgotText: {
-    color: Colors.Theme_Color,
+    color: Colors.White_Color,
   },
 });
 

@@ -4,5 +4,6 @@ export default {
     Notification_Image: require('../assetes/images/bell_icon.png'),
     Delivered_Image: require('../assetes/images/message_delivered.png'),
     ThreeDot_Image: require('../assetes/images/menu.png'),
-    Back_Gray_Image: require('../assetes/images/back_gray.png')
+    Back_Gray_Image: require('../assetes/images/back_gray.png'),
+    Background_Image: require('../assetes/images/backImage.jpeg')
   };

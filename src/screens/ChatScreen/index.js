@@ -10,7 +10,7 @@ const dummy_data = [
   {
     id: 1,
     transaction_type: 'Paid',
-    date: '01 jan 2021',
+    date: '01 Jan',
     time: '03:30PM',
     message: 'this is paid transaction.',
     amount: '500',
@@ -19,7 +19,7 @@ const dummy_data = [
   {
     id: 2,
     transaction_type: 'Received',
-    date: '01 jan 2021',
+    date: '01 Jan',
     time: '03:30PM',
     message: 'this is paid transaction.',
     amount: '500',
@@ -28,7 +28,7 @@ const dummy_data = [
   {
     id: 3,
     transaction_type: 'Paid',
-    date: '01 jan 2021',
+    date: '01 Jan',
     time: '03:30PM',
     message: 'this is paid transaction.',
     amount: '500',
@@ -37,7 +37,7 @@ const dummy_data = [
   {
     id: 4,
     transaction_type: 'Paid',
-    date: '01 jan 2021',
+    date: '01 Jan',
     time: '03:30PM',
     message: 'this is paid transaction.',
     amount: '500',
@@ -46,7 +46,7 @@ const dummy_data = [
   {
     id: 5,
     transaction_type: 'Received',
-    date: '01 jan 2021',
+    date: '01 Jan',
     time: '03:30PM',
     message: 'this is paid transaction.',
     amount: '500',
@@ -55,7 +55,7 @@ const dummy_data = [
   {
     id: 6,
     transaction_type: 'Paid',
-    date: '01 jan 2021',
+    date: '01 Jan',
     time: '03:30PM',
     message: 'this is paid transaction.',
     amount: '500',
@@ -64,7 +64,7 @@ const dummy_data = [
   {
     id: 7,
     transaction_type: 'Received',
-    date: '01 jan 2021',
+    date: '01 Jan',
     time: '03:30PM',
     message: 'this is paid transaction.',
     amount: '500',
@@ -73,7 +73,7 @@ const dummy_data = [
   {
     id: 8,
     transaction_type: 'Received',
-    date: '01 jan 2021',
+    date: '01 Jan',
     time: '03:30PM',
     message: 'this is paid transaction.',
     amount: '500',
@@ -82,7 +82,7 @@ const dummy_data = [
   {
     id: 9,
     transaction_type: 'Paid',
-    date: '01 jan 2021',
+    date: '01 Jan',
     time: '03:30PM',
     message: 'this is paid transaction.',
     amount: '500',
@@ -117,47 +117,73 @@ const ChatScreen = ({navigation}: props) => {
     return (
       <View style={{marginTop:15, marginBottom:10}}>
         {item.transaction_type === 'Received' ? (
-          <View
-            style={{
-            //   height: 100,
-              width: '80%',
-              alignSelf: 'flex-start',
-              backgroundColor: Common.Colors.Theme_Color,
-              borderColor: Common.Colors.White_Color,
-              borderBottomWidth: 1,
-              padding:10,
-              borderRadius:20
-            }}>
-            <Text style={{fontSize:20, fontWeight:'bold', color:Common.Colors.White_Color}}>Recieved Amount:{item.amount}</Text>
-            <Text style={{fontSize:20, fontWeight:'bold', color:Common.Colors.White_Color}}>Total Amount:{item.total_amount}</Text>
-            <View>
-                <Text style={{fontSize:14, fontWeight:'500', color:Common.Colors.White_Color}}>Description: {item.message}</Text>
+          <View style={{flexDirection:'row', width:'80%', borderRadius:10, padding:10, backgroundColor:'#50AF58', alignSelf:'flex-start'}}>
+            <View style={{flex:2,justifyContent:'center', alignItems:'center'}}>
+              <Text allowFontScaling={false} style={{fontSize:14, fontWeight:'bold', color:"#ffffff"}} numberOfLines={1}>{item.date}:{item.message}</Text>
+              </View>
+              <View style={{flex:1,justifyContent:'center', alignItems:'center'}}>
+                <View style={{backgroundColor:'white', paddingVertical:5, paddingHorizontal:15, borderRadius:5, justifyContent:'center', alignItems:'center'}}>
+                <Text allowFontScaling={false} style={{fontSize:12, fontWeight:'bold', color:"#111111"}}>{item.amount}</Text>
+                </View>
+              </View>
+              <View style={{flex:1,justifyContent:'center', alignItems:'center'}}>
+                <Text allowFontScaling={false} style={{fontSize:16, fontWeight:'bold', color:"#ffffff"}}>{item.total_amount}</Text>
+              </View>
             </View>
-            <View>
-                <Text style={{fontSize:10, fontWeight:'500', textAlign:'right', color:Common.Colors.White_Color}}>{item.time} {item.date}</Text>
-            </View>
-          </View>
+          // <View
+          //   style={{
+          //   //   height: 100,
+          //     width: '80%',
+          //     alignSelf: 'flex-start',
+          //     backgroundColor: Common.Colors.Theme_Color,
+          //     borderColor: Common.Colors.White_Color,
+          //     borderBottomWidth: 1,
+          //     padding:10,
+          //     borderRadius:20
+          //   }}>
+          //   <Text style={{fontSize:20, fontWeight:'bold', color:Common.Colors.White_Color}}>Recieved Amount:{item.amount}</Text>
+          //   <Text style={{fontSize:20, fontWeight:'bold', color:Common.Colors.White_Color}}>Total Amount:{item.total_amount}</Text>
+          //   <View>
+          //       <Text style={{fontSize:14, fontWeight:'500', color:Common.Colors.White_Color}}>Description: {item.message}</Text>
+          //   </View>
+          //   <View>
+          //       <Text style={{fontSize:10, fontWeight:'500', textAlign:'right', color:Common.Colors.White_Color}}>{item.time} {item.date}</Text>
+          //   </View>
+          // </View>
         ) : (
-          <View
-            style={{
-              height: 100,
-              width: '80%',
-              alignSelf: 'flex-end',
-              backgroundColor: '#e7e7e7',
-              borderColor: Common.Colors.White_Color,
-              borderBottomWidth: 1,
-              padding:10,
-              borderRadius:20
-            }}>
-            <Text style={{fontSize:20, fontWeight:'bold', color:"#111111"}}>Paid Amount:{item.amount}</Text>
-            <Text style={{fontSize:20, fontWeight:'bold', color:'#111111'}}>Total Amount:{item.total_amount}</Text>
-            <View>
-                <Text style={{fontSize:14, fontWeight:'500', color:'#111111'}}>Description: {item.message}</Text>
+          <View style={{flexDirection:'row', width:'80%', borderRadius:10, padding:10, backgroundColor:'#3091F2', alignSelf:'flex-end'}}>
+            <View style={{flex:2,justifyContent:'center', alignItems:'center'}}>
+              <Text allowFontScaling={false} style={{fontSize:14, fontWeight:'bold', color:"#ffffff"}} numberOfLines={1}>{item.date}:{item.message}</Text>
+              </View>
+              <View style={{flex:1,justifyContent:'center', alignItems:'center'}}>
+                <View style={{backgroundColor:'white', paddingVertical:5, paddingHorizontal:15, borderRadius:5, justifyContent:'center', alignItems:'center'}}>
+                <Text allowFontScaling={false} style={{fontSize:14, fontWeight:'bold', color:"#111111"}} numberOfLines={1}>{item.amount}</Text>
+                </View>
+              </View>
+              <View style={{flex:1,justifyContent:'center', alignItems:'center'}}>
+                <Text allowFontScaling={false} style={{fontSize:14, fontWeight:'bold', color:"#ffffff"}} numberOfLines={1}>{item.total_amount}</Text>
+              </View>
             </View>
-            <View>
-                <Text style={{fontSize:10, fontWeight:'500', textAlign:'right', color:'#111111'}}>{item.time} {item.date}</Text>
-            </View>
-          </View>
+          // <View
+          //   style={{
+          //     height: 100,
+          //     width: '80%',
+          //     alignSelf: 'flex-end',
+          //     backgroundColor: '#e7e7e7',
+          //     borderColor: Common.Colors.White_Color,
+          //     borderBottomWidth: 1,
+          //     padding:10,
+          //     borderRadius:20
+          //   }}>
+          //   <Text style={{fontSize:20, fontWeight:'bold', color:"#111111"}}>Paid Amount:{item.amount}</Text>
+          //   <Text style={{fontSize:20, fontWeight:'bold', color:'#111111'}}>Total Amount:{item.total_amount}</Text>
+          //   <View>
+          //       <Text style={{fontSize:14, fontWeight:'500', color:'#111111'}}>Description: {item.message}</Text>
+          //   </View>
+          //   <View>
+          //       <Text style={{fontSize:10, fontWeight:'500', textAlign:'right', color:'#111111'}}>{item.time} {item.date}</Text>
+          //   </View>
+          // </View>
         )}
       </View>
     );
@@ -171,7 +197,9 @@ const ChatScreen = ({navigation}: props) => {
           width: '100%',
           alignItems: 'center',
           flexDirection: 'row',
-          backgroundColor: Common.Colors.Theme_Color,
+          backgroundColor: '#ffffff',
+          borderBottomColor:'gray',
+          borderBottomWidth:2
         }}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
@@ -181,12 +209,12 @@ const ChatScreen = ({navigation}: props) => {
               height: '100%',
               widht: '100%',
               resizeMode: 'contain',
-              tintColor: '#ffffff',
+              tintColor: '#111111',
             }}
             source={Common.Images.Back_Gray_Image}
           />
         </TouchableOpacity>
-        <View
+        {/* <View
           style={{
             height: 40,
             width: 40,
@@ -194,7 +222,7 @@ const ChatScreen = ({navigation}: props) => {
             borderWidth: 1,
             justifyContent: 'center',
             alignItems: 'center',
-            borderColor: '#ffffff',
+            borderColor: '#111111',
           }}>
           <Image
             style={{
@@ -205,12 +233,12 @@ const ChatScreen = ({navigation}: props) => {
             }}
             source={Common.Images.User_dummy_Image}
           />
-        </View>
+        </View> */}
         <View style={{height: 40, flex: 1, paddingHorizontal: 10}}>
           <Text
             allowFontScaling={false}
             numberOfLines={1}
-            style={{fontSize: 22, fontWeight: 'bold', color: '#ffffff'}}>
+            style={{fontSize: 22, fontWeight: 'bold', color: '#111111'}}>
             {'xyz'}
           </Text>
         </View>
@@ -232,6 +260,14 @@ const ChatScreen = ({navigation}: props) => {
           backgroundColor: Common.Colors.White_Color,
           paddingHorizontal: 10,
         }}>
+          <View style={{flexDirection:'row', paddingVertical:5}}>
+            <View style={{flex:1, alignItems:'flex-start'}}>
+              <Text allowFontScaling={false} style={{fontSize:12, fontWeight:'bold', color:'#7a7a7a'}}>Varun Gupta - 9999999999</Text>
+            </View>
+            <View style={{flex:1, alignItems:'flex-end'}}>
+            <Text allowFontScaling={false} style={{fontSize:12, fontWeight:'bold', color:'#111111'}}>Balance: To Receive Rs.1,500</Text>
+            </View>
+          </View>
         <FlatList
           data={dummy_data}
           renderItem={showListItem}
@@ -246,7 +282,9 @@ const ChatScreen = ({navigation}: props) => {
           flexDirection: 'row',
           justifyContent: 'space-evenly',
           alignItems: 'center',
-          backgroundColor:'#ffffff'
+          backgroundColor:'#ffffff',
+          borderTopWidth:2,
+          borderTopColor:'gray'
         }}>
         <TouchableOpacity
         onPress={()=>setshow_modal(true)}
@@ -254,10 +292,14 @@ const ChatScreen = ({navigation}: props) => {
             height: 40,
             width: 150,
             borderRadius: 20,
-            justifyContent: 'center',
+            justifyContent: 'space-evenly',
             alignItems: 'center',
-            backgroundColor: 'green',
+            backgroundColor: '#50AF58',
+            flexDirection:'row'
           }}>
+            <View style={{height:25, width:25, backgroundColor:'lightgreen', borderRadius:5, justifyContent:'center', alignItems:'center'}}>
+              <Text allowFontScaling={false} style={{fontSize:20, fontWeight:'bold', color:"#ffffff"}}>+</Text>
+            </View>
           <Text style={{fontSize: 16, fontWeight: 'bold', color: '#ffffff'}}>
             Received
           </Text>
@@ -268,10 +310,14 @@ const ChatScreen = ({navigation}: props) => {
             height: 40,
             width: 150,
             borderRadius: 20,
-            justifyContent: 'center',
+            justifyContent: 'space-evenly',
             alignItems: 'center',
-            backgroundColor: 'red',
+            backgroundColor: '#3091F2',
+            flexDirection:'row'
           }}>
+            <View style={{height:25, width:25, backgroundColor:'red',borderRadius:5, justifyContent:'center', alignItems:'center'}}>
+              <Text allowFontScaling={false} style={{fontSize:20, fontWeight:'bold', color:"#ffffff"}}>-</Text>
+            </View>
           <Text style={{fontSize: 16, fontWeight: 'bold', color: '#ffffff'}}>
             Paid
           </Text>
