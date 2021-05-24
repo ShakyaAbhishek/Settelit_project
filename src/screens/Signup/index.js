@@ -12,9 +12,9 @@ import Common from '../../common';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import CheckBox from 'react-native-check-box';
 import {useDispatch, useSelector} from 'react-redux';
-import * as loginAction from '../../redux/action/loginAction';
+import * as signupAction from '../../redux/action/signupAction';
 
-const Login = ({navigation}) => {
+const Signup = ({navigation}) => {
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -22,19 +22,20 @@ const Login = ({navigation}) => {
     cellno: '',
   });
   const dispatch = useDispatch();
-  const loginResponse = useSelector(
-    (state) => state.LoginReducer.loginResponse,
+
+  const signupResponse = useSelector(
+    (state) => state.LoginReducer.signupResponse,
   );
 
   useEffect(() => {
-    if (Object.keys(loginResponse).length) {
-      alert('login successfully');
-      navigation.navigate('Home');
-      dispatch(loginAction.emptyloginData());
+    if (Object.keys(signupResponse).length) {
+      alert('Signup successfully');
+      navigation.goBack();
+      dispatch(signupAction.emptySignupData());
     }
-  }, [loginResponse]);
+  }, [signupResponse]);
 
-  const login = () => {
+  const signup = () => {
     let {email, cellno, password, name} = state;
     let data = {
       email: email,
@@ -42,8 +43,9 @@ const Login = ({navigation}) => {
       pwd: password,
       fname: name,
     };
-    dispatch(loginAction.doLogin(data));
+    dispatch(signupAction.doSignup(data));
   };
+
   return (
     <ImageBackground
       source={Common.Images.Background_Image}
@@ -59,7 +61,7 @@ const Login = ({navigation}) => {
             </Text>
           </View>
           <View>
-            <Text style={styles.loginText}>Login</Text>
+            <Text style={styles.loginText}>Signup</Text>
           </View>
           <View>
             <Text style={{color: '#ffffff'}}>email</Text>
@@ -101,29 +103,14 @@ const Login = ({navigation}) => {
               />
             </View>
           </View>
-          <View style={styles.container2}>
-            <CheckBox
-              style={{flex: 0.7, padding: 10}}
-              onClick={() => {
-                //   this.setState({
-                //     isChecked: !this.state.isChecked,
-                //   });
-              }}
-              isChecked={true}
-              rightText={'Remember Me'}
-              rightTextStyle={{color: Colors.White_Color}}
-              checkBoxColor={Colors.White_Color}
-            />
-            <TouchableOpacity>
-              <Text style={styles.forgotText}>Forgot Password ?</Text>
-            </TouchableOpacity>
-          </View>
           <View style={{alignItems: 'center'}}>
-            <TouchableOpacity style={styles.loginBtn} onPress={login}>
-              <Text style={{color: 'white'}}>LOGIN</Text>
+            <TouchableOpacity style={styles.loginBtn} onPress={signup}>
+              <Text style={{color: 'white'}}>Signup</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-              <Text style={{color: Colors.White_Color}}>Create Account</Text>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Text style={{color: Colors.White_Color}}>
+                Already had Account ? click here to login
+              </Text>
             </TouchableOpacity>
           </View>
         </KeyboardAwareScrollView>
@@ -161,7 +148,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 3,
     paddingVertical: 10,
     borderBottomColor: '#e2e2e2',
-    color: 'white',
+    color:'white'
   },
   container2: {
     flexDirection: 'row',
@@ -180,4 +167,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default Signup;
