@@ -1,6 +1,7 @@
 const initialState = {
   loginResponse: '',
   signupResponse: '',
+  loaderResponse: false,
 };
 
 const LoginReducer = (state = initialState, action) => {
@@ -17,6 +18,13 @@ const LoginReducer = (state = initialState, action) => {
         ...state,
         signupResponse: action.value,
       };
+    }
+
+    case 'LOADER' : {
+      return {
+        ...state,
+        loaderResponse: action.value,
+      }
     }
 
     default:

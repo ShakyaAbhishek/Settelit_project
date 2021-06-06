@@ -35,7 +35,7 @@ var NoAuthAPI = (apiName, apiMethod, data) => {
     .then((response) => response.json())
     .then((responseData) => {
       console.warn(responseData)
-      if (responseData.data == '1') {
+      if (responseData.status == 200) {
         return responseData;
       } else {
         alert('Something went wrong');

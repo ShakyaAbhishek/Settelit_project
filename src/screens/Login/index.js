@@ -13,36 +13,67 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import CheckBox from 'react-native-check-box';
 import {useDispatch, useSelector} from 'react-redux';
 import * as loginAction from '../../redux/action/loginAction';
+import {
+  validateEmail,
+  validateFirstName,
+  validatePassword,
+  validatePhoneNo,
+} from "../../utilities/validation";
+import {Loader} from '../../Components';
 
 const Login = ({navigation}) => {
   const [state, setState] = useState({
     email: '',
     password: '',
+    passwordError:'',
     name: '',
     cellno: '',
+    cellnoError:'',
+    loader:false
   });
   const dispatch = useDispatch();
   const loginResponse = useSelector(
     (state) => state.LoginReducer.loginResponse,
   );
+  const loaderview = useSelector(
+    (state) => state.LoginReducer.loaderResponse,
+  );
 
   useEffect(() => {
+    setState({...state, loader:loaderview});
+    console.log('dddddd',JSON.stringify(loaderview, undefined, 2))
     if (Object.keys(loginResponse).length) {
       alert('login successfully');
+      setState({...state, loader:false});
       navigation.navigate('Home');
       dispatch(loginAction.emptyloginData());
+      
     }
-  }, [loginResponse]);
+    else{
+      setState({...state, loader:false});
+    }
+  }, [loginResponse, loaderview]);
 
   const login = () => {
     let {email, cellno, password, name} = state;
+    if (validatePhoneNo(cellno).status !== true) {
+      setState({...state, cellnoError: validatePhoneNo(cellno).message})
+      // setMobileNumberError(validatePhoneNo(mobileNumber).message);
+    } 
+    else if (validatePassword(password).status !== true) {
+      setState({...state, passwordError: validatePassword(password).message})
+      // setPasswordTextError(validatePassword(passwordText).message);
+    }
+    else {
+    setState({...state, loader:true});
     let data = {
-      email: email,
+      // email: email,
       cellno: cellno,
       pwd: password,
-      fname: name,
+      // fname: name,
     };
     dispatch(loginAction.doLogin(data));
+  }
   };
   return (
     <ImageBackground
@@ -61,7 +92,7 @@ const Login = ({navigation}) => {
           <View>
             <Text style={styles.loginText}>Login</Text>
           </View>
-          <View>
+          {/* <View>
             <Text style={{color: '#ffffff'}}>email</Text>
             <View>
               <TextInput
@@ -70,28 +101,32 @@ const Login = ({navigation}) => {
                 value={state.email}
               />
             </View>
+          </View> */}
+          <View style={{marginVertical: 0}}>
+            <Text style={{color: '#ffffff'}}>Mobile number</Text>
+            <View>
+              <TextInput
+                style={styles.input}
+                onChangeText={(e) => setState({...state, cellno: e, cellnoError:''})}
+                value={state.cellno}
+                keyboardType={'number-pad'}
+              />
+              {state.cellnoError != '' && <Text style={{color: 'red'}}>{state.cellnoError}</Text>}
+            </View>
           </View>
           <View style={{marginVertical: 20}}>
             <Text style={{color: '#ffffff'}}>Password</Text>
             <View>
               <TextInput
                 style={styles.input}
-                onChangeText={(e) => setState({...state, password: e})}
+                onChangeText={(e) => setState({...state, password: e, passwordError:''})}
                 value={state.password}
               />
+              {state.passwordError != '' && <Text style={{color: 'red'}}>{state.passwordError}</Text>}
             </View>
           </View>
-          <View style={{marginVertical: 20}}>
-            <Text style={{color: '#ffffff'}}>Mobile number</Text>
-            <View>
-              <TextInput
-                style={styles.input}
-                onChangeText={(e) => setState({...state, cellno: e})}
-                value={state.cellno}
-              />
-            </View>
-          </View>
-          <View style={{marginVertical: 20}}>
+          
+          {/* <View style={{marginVertical: 20}}>
             <Text style={{color: '#ffffff'}}>Name</Text>
             <View>
               <TextInput
@@ -100,7 +135,7 @@ const Login = ({navigation}) => {
                 value={state.name}
               />
             </View>
-          </View>
+          </View> */}
           <View style={styles.container2}>
             <CheckBox
               style={{flex: 0.7, padding: 10}}
@@ -127,6 +162,7 @@ const Login = ({navigation}) => {
             </TouchableOpacity>
           </View>
         </KeyboardAwareScrollView>
+        <Loader loading={loaderview} />
       </View>
     </ImageBackground>
   );
